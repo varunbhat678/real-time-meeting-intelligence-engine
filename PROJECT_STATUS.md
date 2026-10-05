@@ -31,7 +31,8 @@ Beginner. Explain the purpose of each important component in simple language.
 - [x] Initialized Git
 - [x] Created main branch
 - [x] Connected local repository to GitHub
-- [ ] Application code
+- [x] FastAPI backend skeleton (backend/app/main.py)
+- [x] Virtual environment + requirements.txt
 - [ ] Database setup
 - [ ] Authentication
 - [ ] Meeting creation and joining
@@ -41,6 +42,21 @@ Beginner. Explain the purpose of each important component in simple language.
 - [ ] Transcript storage
 - [ ] Meeting history
 - [ ] AI integration endpoint
+
+## Project Structure
+- backend/app/main.py: FastAPI app
+- backend/requirements.txt: Python libraries
+- backend/venv/: virtual environment (not committed)
+- frontend/: empty so far
+
+## How to Run
+cd backend
+venv\Scripts\activate
+uvicorn app.main:app --reload
+Test: http://127.0.0.1:8000/api/health and http://127.0.0.1:8000/docs
+
+## Endpoints
+- GET /api/health: returns {"status": "ok"}
 
 ## Architecture Rules
 - Do not use React.
@@ -57,7 +73,7 @@ The actual model selection, dataset preparation, tokenization, fine-tuning, eval
 Part 1 should provide a working transcript pipeline and a clearly defined integration point for the future model.
 
 ## Last Completed Step
-Initialized Git and connected the local repository to GitHub.
+Stage 1, Step 1: FastAPI + Uvicorn skeleton working with /api/health.
 
 ## Next Step
-Commit the initial project documentation and push it to GitHub.
+Stage 1, Step 2: install PostgreSQL, create the meeting_engine database, connect it with SQLAlchemy, add /api/db-check.
