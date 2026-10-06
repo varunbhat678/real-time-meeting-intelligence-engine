@@ -33,7 +33,7 @@ Beginner. Explain the purpose of each important component in simple language.
 - [x] Connected local repository to GitHub
 - [x] FastAPI backend skeleton (backend/app/main.py)
 - [x] Virtual environment + requirements.txt
-- [ ] Database setup
+-  [x] Database connection (PostgreSQL + SQLAlchemy)
 - [ ] Authentication
 - [ ] Meeting creation and joining
 - [ ] Real-time chat
@@ -47,6 +47,9 @@ Beginner. Explain the purpose of each important component in simple language.
 - backend/app/main.py: FastAPI app
 - backend/requirements.txt: Python libraries
 - backend/venv/: virtual environment (not committed)
+- backend/app/database.py: engine, session, Base, get_db()
+- backend/.env: DATABASE_URL (secret, never committed)
+- backend/.env.example: safe template
 - frontend/: empty so far
 
 ## How to Run
@@ -57,7 +60,10 @@ Test: http://127.0.0.1:8000/api/health and http://127.0.0.1:8000/docs
 
 ## Endpoints
 - GET /api/health: returns {"status": "ok"}
-
+- GET /api/db-check: runs SELECT 1 to confirm PostgreSQL connection
+## Database
+- PostgreSQL database name: meeting_engine (localhost:5432)
+- Tables: none yet
 ## Architecture Rules
 - Do not use React.
 - Keep Python and FastAPI as the backend.
@@ -76,4 +82,4 @@ Part 1 should provide a working transcript pipeline and a clearly defined integr
 Stage 1, Step 1: FastAPI + Uvicorn skeleton working with /api/health.
 
 ## Next Step
-Stage 1, Step 2: install PostgreSQL, create the meeting_engine database, connect it with SQLAlchemy, add /api/db-check.
+Stage 1, Step 3: create the first table (users) with a SQLAlchemy model.

@@ -1,11 +1,19 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from sqlalchemy import text
+from sqlalchemy.orm import Session
 
-# This creates our application. Everything else attaches to it.
+from app.database import get_db
+
 app = FastAPI(title="Real-Time Meeting Intelligence Engine")
 
 
-# "@app.get" means: when a browser sends a GET request to this URL,
-# run the function below and send back what it returns.
 @app.get("/api/health")
 def health_check():
     return {"status": "ok", "message": "Backend is running"}
+
+
+# Depends(get_db) = "FastAPI, please give me a database session."
+@app.get("/api/db-check")
+def db_check(db: Session = Depends(get_db)):
+    db.execute(text("SELECT 1"))  # simplest possible database question
+    return {"status": "ok", "message": "Database connected"}
