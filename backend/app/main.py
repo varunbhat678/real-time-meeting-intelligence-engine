@@ -2,9 +2,12 @@ from fastapi import FastAPI, Depends
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import get_db, engine, Base
+from app import models
 
 app = FastAPI(title="Real-Time Meeting Intelligence Engine")
+# Creates any missing tables in PostgreSQL when the server starts.
+Base.metadata.create_all(bind=engine)
 
 
 @app.get("/api/health")
